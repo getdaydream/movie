@@ -4,7 +4,12 @@
 import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import App from '../components/App';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 
 const render = Component =>
     ReactDOM.render(
@@ -15,4 +20,4 @@ const render = Component =>
     );
 
 render(App);
-if (module.hot) module.hot.accept('./App', () => render(App));
+if (module.hot) module.hot.accept('../components/App', () => render(App));
