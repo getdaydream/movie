@@ -7,14 +7,14 @@ import { List, ListItem } from 'material-ui/List/';
 import Subheader from 'material-ui/Subheader';
 
 const style = {
-  paper: {
-      position: 'absolute',
-      width: 150,
-      top: 56,
-      bottom: 0,
-      overflow: 'auto',
-      borderRadius: 0
-  }
+    paper: {
+        position: "absolute",
+        top: '56px',
+        width: 150,
+        bottom: 0,
+        overflow: "auto",
+        borderRadius: 0
+    }
 };
 
 export default class Sidebar extends React.Component {

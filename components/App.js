@@ -8,20 +8,30 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
-// If you use React Router, make this component
-// render <Router> with your routes. Currently,
-// only synchronous routes are hot reloaded, and
-// you will see a warning from <Router> on every reload.
-// You can ignore this warning. For details, see:
-// https://github.com/reactjs/react-router/issues/2182
+const style = {
+    rightContentDiv : {
+        webkitBoxSizing: 'border-box',
+        mozBoxSizing: 'border-box',
+        boxSizing: 'border-box',
+        position: 'absolute',
+        top: 56,
+        left: 150,
+        bottom: 0,
+        overflowY: 'hidden',
+    }
+};
+
 export default class App extends React.Component {
 
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-                <div>
+                <div style={style.div}>
                     <Toolbar/>
                     <Sidebar />
+                    <div style={style.rightContentDiv}>
+                        {this.props.children}
+                    </div>
                 </div>
             </MuiThemeProvider>
         )

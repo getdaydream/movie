@@ -5,19 +5,26 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import App from '../components/App';
+import { Router, browserHistory } from 'react-router';
+
+import {routes} from './routes';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-const render = Component =>
-    ReactDOM.render(
-        <AppContainer>
-            <Component />
-        </AppContainer>,
-        document.getElementById('root')
-    );
+const content = (
+    <Router history={browserHistory} routes={routes} />
+);
 
-render(App);
-if (module.hot) module.hot.accept('../components/App', () => render(App));
+const renderRoot = () => ReactDOM.render(
+    <AppContainer>{content}</AppContainer>,
+    document.getElementById('root')
+);
+
+renderRoot();
+
+
+if (module.hot) {
+    module.hot.accept('./routes', renderRoot());
+}

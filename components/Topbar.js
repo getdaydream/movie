@@ -6,7 +6,7 @@ import ToolBar from 'material-ui/Toolbar';
 
 const style = {
     toolBar: {
-        backgroundColor: '#1976D2'
+        backgroundColor: '#2d94b5'
     }
 };
 
