@@ -7,13 +7,19 @@ import { List, ListItem } from 'material-ui/List/';
 import Subheader from 'material-ui/Subheader';
 
 const style = {
+    sidebarDiv: {
+        MozUserSelect: 'none',
+        WebkitUserSelect: 'none',
+        msUserSelect: 'none',
+        userSelect: 'none',
+
+        height: '100%',
+        overflowY: 'auto'
+    },
     paper: {
-        position: "absolute",
-        top: '56px',
-        width: 150,
-        bottom: 0,
         overflow: "auto",
-        borderRadius: 0
+        borderRadius: 0,
+        height: '100%'
     }
 };
 
@@ -21,7 +27,7 @@ export default class Sidebar extends React.Component {
 
     render() {
         return (
-            <div className="sidebar">
+            <div style={style.sidebarDiv}>
                 <Paper style={style.paper}>
                     <List>
                         <Subheader>发现</Subheader>
