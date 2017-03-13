@@ -5,7 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Router, browserHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 
 import {routes} from './routes';
 
@@ -14,7 +14,7 @@ import {routes} from './routes';
 injectTapEventPlugin();
 
 const content = (
-    <Router history={browserHistory} routes={routes} />
+    <Router history={hashHistory} routes={routes} />
 );
 
 const renderRoot = () => ReactDOM.render(

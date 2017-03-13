@@ -6,20 +6,54 @@ import React from 'react';
 const style = {
     mainDiv: {
         width: '100%',
-        position: 'relative'
+        height: '100%',
+        backgroundImage: 'url(../src/img/p1835.jpg)',
+        backgroundSize: 'cover',
+        position: 'relative',
     },
-        img: {
-        width: "100%",
-        objectFit: "cover"
-    },
-    p: {
+    //TODO: layout refine
+    textMainDiv: {
         position: 'absolute',
         bottom: 0,
+        width: '100%',
+        paddingBottom: '40px',
+        paddingTop: '3rem',
+
+        color: '#000',
+        backgroundColor: '#fff',
+        fontFamily: 'STFangsong,Fangsong,FangSong_GB2312,STSong,serif',
+        textAlign: 'center'
+    },
+    textBoxDiv: {
+        maxWidth: '1024px',
+        padding: '0 1.5rem',
+        margin: '0 auto'
+    },
+    quoteP: {
         margin: 0,
         //p本身有margin
-        height: '100px',
-        zIndex: 2,
-        backgroundColor: 'rgb(255, 255, 255)'
+        fontSize: 'calc(1.7rem + 3 * (100vw - 414px) / 952)',
+        textAlign: 'center',
+        lineHeight: 1.5,
+    },
+    aDiv: {
+        width: '100%',
+        textAlign: 'right',
+        fontSize: 'calc(1.0rem + 2.7 * (100vw - 414px) / 952)',
+        marginTop: '1.5rem',
+    },
+    span: {
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        userSelect: 'none'
+    },
+    deriveA: {
+        width: '100%',
+        margin: 0,
+        color: 'inherit',
+        textDecoration: 'none',
+        // cursor: 'auto'
     }
  };
 
@@ -28,19 +62,23 @@ export default class Home extends React.Component {
     render() {
         return (
             <div style={style.mainDiv}>
-                <img
-                    style={style.img}
-                    src="../src/img/p1835.jpg"/>
-                <div>
-                    <p
-                        style={style.p}>
-                        人如果不知道自己身处在何处，是无法前进的。
-                    </p>
-                    <p>
-                        《重版出来！》
-                    </p>
+                <div style={style.textMainDiv}>
+                    <div style={style.textBoxDiv}>
+                        <p style={style.quoteP}>
+                            人如果不知道自己身处在何处，是无法前进的。
+                        </p>
+                        <div style={style.aDiv}>
+                            <span style={style.span}>
+                                ——
+                            </span>
+                            <a style={style.deriveA}
+                               href="https://movie.douban.com/subject/26602304/"
+                               target="_blank">
+                                《重版出来！》
+                            </a>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         )
     }

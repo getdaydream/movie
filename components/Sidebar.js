@@ -5,6 +5,7 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List/';
 import Subheader from 'material-ui/Subheader';
+import { Link } from 'react-router';
 
 const style = {
     sidebarDiv: {
@@ -47,6 +48,7 @@ export default class Sidebar extends React.Component {
                                 <ListItem
                                     key={3}
                                     primaryText="选电影"
+                                    containerElement={<Link to="explore"/>}
                                 />
                             ]}
                         >
@@ -62,34 +64,6 @@ export default class Sidebar extends React.Component {
                                 />,
                                 <ListItem
                                     key={2}
-                                    primaryText="英剧"
-                                />,
-                                <ListItem
-                                    key={3}
-                                    primaryText="美剧"
-                                />,
-                                <ListItem
-                                    key={4}
-                                    primaryText="日剧"
-                                />,
-                                <ListItem
-                                    key={5}
-                                    primaryText="韩剧"
-                                />,
-                                <ListItem
-                                    key={6}
-                                    primaryText="国产剧"
-                                />,
-                                <ListItem
-                                    key={7}
-                                    primaryText="日本动画"
-                                />,
-                                <ListItem
-                                    key={8}
-                                    primaryText="综艺"
-                                />,
-                                <ListItem
-                                    key={9}
                                     primaryText="选电视剧"
                                 />
                             ]}
