@@ -2,23 +2,25 @@
  * Created by Maple on 17/3/13.
  */
 import React from 'react';
+import MovieCard from './MovieCard';
 
 export default class Explore extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            category: 'movie',
-        };
+            movieData: {}
+        }
     }
+
 
     componentDidMount() {
         fetch('http://localhost:3000/explore').then((response) => {
             if (response.ok) {
-                response.json().then(data => {
-                    console.log(data);
+                response.json().then(movieData => {
+                    console.log(movieData);
                     this.setState({
-                        category: data.title
+                        movieData: movieData
                     })
                 })
             }
@@ -27,9 +29,7 @@ export default class Explore extends React.Component {
 
     render() {
         return (
-            <p>
-                it's explore {this.state.category}!
-            </p>
+            <MovieCard movieData={this.state.movieData}/>
         )
     }
 }

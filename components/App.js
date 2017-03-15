@@ -37,21 +37,26 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-                <div style={style.mainDiv}>
-                    <div style={style.toolbarDiv}>
-                        <Toolbar/>
-                    </div>
-                    <div style={style.bottomDiv} >
-                        <div style={style.sidebarDiv}>
-                            <Sidebar/>
+            <div>
+                <MuiThemeProvider>
+                    <div style={style.mainDiv}>
+                        <div style={style.toolbarDiv}>
+                            <Toolbar/>
                         </div>
-                        <div style={style.contentDiv}>
-                            {this.props.children}
+                        <div style={style.bottomDiv} >
+                            <div style={style.sidebarDiv}>
+                                <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+                                    <Sidebar/>
+                                </MuiThemeProvider>
+                            </div>
+                            <div style={style.contentDiv}>
+                                {this.props.children}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </MuiThemeProvider>
+                </MuiThemeProvider>
+            </div>
+
         )
     }
 }
