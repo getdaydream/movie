@@ -29,7 +29,8 @@ const style = {
     },
     contentDiv: {
         flex: '1 1 0%',
-        width: '100%'
+        width: '100%',
+        overflowY: 'auto'
     }
 };
 

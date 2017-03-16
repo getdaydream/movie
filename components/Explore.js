@@ -4,12 +4,23 @@
 import React from 'react';
 import MovieCard from './MovieCard';
 
+const style = {
+    mainDiv: {
+        width: '100%',
+        height: '100%',
+
+        display: '-webkit-flex',
+        flexFlow: 'row wrap',
+        justifyContent: 'space-around'
+    }
+};
+
 export default class Explore extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            movieData: {}
+            movieDataArray: []
         }
     }
 
@@ -17,19 +28,34 @@ export default class Explore extends React.Component {
     componentDidMount() {
         fetch('http://localhost:3000/explore').then((response) => {
             if (response.ok) {
-                response.json().then(movieData => {
-                    console.log(movieData);
+                response.json().then(movieDataArray => {
+                    console.log(movieDataArray);
                     this.setState({
-                        movieData: movieData
+                        movieDataArray: movieDataArray
                     })
                 })
             }
         })
     }
 
+    //TODO conditional rendering
+    // Warning: Each child in an array or iterator should have a unique "key" prop.
     render() {
         return (
-            <MovieCard movieData={this.state.movieData}/>
+            <div style={style.mainDiv}>
+                {/*注意fetch数据前在此传递参数时this.state.movieDataArray中的各项还是undefined，直接传给子元素渲染会失败*/}
+                {this.state.movieDataArray.length != 0 &&
+                this.state.movieDataArray.map(function (movieData, index) {
+                    return (
+                        <MovieCard
+                            key={index}
+                            movieData={movieData}
+                        />
+                    )
+                })
+                }
+
+            </div>
         )
     }
 }

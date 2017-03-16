@@ -9,6 +9,8 @@ import { Link } from 'react-router';
 
 const style = {
     sidebarDiv: {
+        fontFamily: 'Roboto, sans-serif',
+
         MozUserSelect: 'none',
         WebkitUserSelect: 'none',
         msUserSelect: 'none',
@@ -36,6 +38,7 @@ export default class Sidebar extends React.Component {
                             primaryText="电影"
                             initiallyOpen={true}
                             primaryTogglesNestedList={true}
+                            containerElement={<Link to="/"/>}
                             nestedItems={[
                                 <ListItem
                                     key={1}
