@@ -4,7 +4,7 @@
 import React from 'react';
 
 const style = {
-    mainDiv: {
+    movieCardDiv: {
         width: '100%',
         height: '100%',
         backgroundImage: 'url(../src/img/p1835.jpg)',
@@ -61,7 +61,7 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <div style={style.mainDiv}>
+            <div style={style.movieCardDiv}>
                 <div style={style.textMainDiv}>
                     <div style={style.textBoxDiv}>
                         <p style={style.quoteP}>

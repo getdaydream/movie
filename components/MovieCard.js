@@ -8,7 +8,7 @@ import StarHalf from 'material-ui/svg-icons/toggle/star-half';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 const style = {
-    mainDiv: {
+    movieCardDiv: {
         height: '320px',
         minWidth: '150px',
         maxWidth: '200px',
@@ -144,10 +144,9 @@ export default class MovieCard extends React.Component {
       }
     };
 
-
     render() {
         return (
-            <div style={style.mainDiv}>
+            <div style={style.movieCardDiv}>
                 <Paper
                     style={style.paper}
                     onMouseOver={this.onMouseOver}
@@ -158,12 +157,12 @@ export default class MovieCard extends React.Component {
                         <img
                             style={style.movieImg}
                             src={'http://localhost:3000/img/' + this.props.movieData.doubanId + '.jpg'}
-                            alt='batman'
+                            alt='img'
                         />
                         <div style={style.ratingDiv}>
                             <div style={style.ratingValueDiv}>
                                 <p style={style.ratingValueP}>
-                                    {this.props.movieData.doubanRating.ratingValue}
+                                    {this.props.movieData.doubanRating.ratingValue.toFixed(1)}
                                 </p>
                             </div>
                             <div style={style.ratingStarDiv}>
@@ -178,6 +177,7 @@ export default class MovieCard extends React.Component {
                     </div>
                     <p style={style.movieNameP}>
                         {this.props.movieData.name.split(' ')[0]}
+                        {this.props.movieData.year ? '(' + this.props.movieData.year + ')' : ''}
                         <span>
 
                         </span>

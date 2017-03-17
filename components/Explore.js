@@ -2,12 +2,21 @@
  * Created by Maple on 17/3/13.
  */
 import React from 'react';
+import Selector from './Selector';
 import MovieCard from './MovieCard';
 
 const style = {
     mainDiv: {
+
+    },
+    selectorDiv: {
+
+    },
+    movieCardDiv: {
         width: '100%',
         height: '100%',
+
+        backgroundColor: 'rgb(235, 235, 235)',
 
         display: '-webkit-flex',
         flexFlow: 'row wrap',
@@ -43,18 +52,22 @@ export default class Explore extends React.Component {
     render() {
         return (
             <div style={style.mainDiv}>
-                {/*注意fetch数据前在此传递参数时this.state.movieDataArray中的各项还是undefined，直接传给子元素渲染会失败*/}
-                {this.state.movieDataArray.length != 0 &&
-                this.state.movieDataArray.map(function (movieData, index) {
-                    return (
-                        <MovieCard
-                            key={index}
-                            movieData={movieData}
-                        />
-                    )
-                })
-                }
-
+                <div style={style.selectorDiv}>
+                    <Selector/>
+                </div>
+                <div style={style.movieCardDiv}>
+                    {/*注意fetch数据前在此传递参数时this.state.movieDataArray中的各项还是undefined，直接传给子元素渲染会失败*/}
+                    {this.state.movieDataArray.length != 0 &&
+                    this.state.movieDataArray.map(function (movieData, index) {
+                        return (
+                            <MovieCard
+                                key={index}
+                                movieData={movieData}
+                            />
+                        )
+                    })
+                    }
+                </div>
             </div>
         )
     }

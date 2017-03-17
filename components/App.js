@@ -2,7 +2,6 @@
  * Created by Maple on 17/3/5.
  */
 import React from 'react';
-import Toolbar from './Topbar';
 import Sidebar from './Sidebar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -14,17 +13,17 @@ const style = {
         flexDirection: 'column',
         height: '100vh'
     },
-    toolbarDiv: {
+    searchbarDiv: {
         flex: '0 0 auto'
     },
-    bottomDiv : {
+    sidebarAndContentDiv : {
         height: '100%',
         flex: '1 1 auto',
 
         display: '-webkit-flex'
     },
     sidebarDiv: {
-        width: '150px',
+        width: '130px',
         flex: 'none',
     },
     contentDiv: {
@@ -41,10 +40,7 @@ export default class App extends React.Component {
             <div>
                 <MuiThemeProvider>
                     <div style={style.mainDiv}>
-                        <div style={style.toolbarDiv}>
-                            <Toolbar/>
-                        </div>
-                        <div style={style.bottomDiv} >
+                        <div style={style.sidebarAndContentDiv} >
                             <div style={style.sidebarDiv}>
                                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
                                     <Sidebar/>
