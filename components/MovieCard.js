@@ -178,9 +178,6 @@ export default class MovieCard extends React.Component {
                     <p style={style.movieNameP}>
                         {this.props.movieData.name.split(' ')[0]}
                         {this.props.movieData.year ? '(' + this.props.movieData.year + ')' : ''}
-                        <span>
-
-                        </span>
                     </p>
                 </Paper>
             </div>

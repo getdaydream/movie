@@ -35,10 +35,9 @@ export default class Explore extends React.Component {
 
 
     componentDidMount() {
-        fetch('http://localhost:3000/explore').then((response) => {
+        fetch('http://localhost:3000/tag/TV').then((response) => {
             if (response.ok) {
                 response.json().then(movieDataArray => {
-                    console.log(movieDataArray);
                     this.setState({
                         movieDataArray: movieDataArray
                     })
