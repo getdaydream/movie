@@ -32,25 +32,11 @@ export default class Selector extends React.Component {
         super(props);
 
         this.state = {
-            categorySelectedTagIndex: 0,
-            countrySelectedTagIndex: 0
         }
 
     };
 
-    //TODO !!!!!!!!怎样在onclick中传参
-    handleCategoryTouchTap = (index) => {
-        this.setState({
-            categorySelectedTagIndex: index
-        });
-    };
-
-    handleCountryTouchTap = (index) => {
-        this.setState({
-            countrySelectedTagIndex: index
-        });
-    };
-
+    //TODO !!!!!!!!怎样在onclick中传参 this.handleOnClick.bind(this, index)
 
     render() {
         return (
@@ -61,8 +47,8 @@ export default class Selector extends React.Component {
                             <FlatButton
                                 key={index}
                                 label={data}
-                                backgroundColor={this.state.categorySelectedTagIndex == index ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
-                                onTouchTap={() => this.handleCategoryTouchTap(index)}
+                                backgroundColor={this.props.currentCategoryTag == data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
+                                onTouchTap={() => this.props.handleOnClickCategoryButton(data)}
                             />
                             )
                         )}
@@ -72,8 +58,8 @@ export default class Selector extends React.Component {
                                 <FlatButton
                                     key={index}
                                     label={data}
-                                    backgroundColor={this.state.countrySelectedTagIndex == index ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
-                                    onTouchTap={() => this.handleCountryTouchTap(index)}
+                                    backgroundColor={this.props.currentCountryTag == data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
+                                    onTouchTap={() => this.props.handleOnClickCountryButton(data)}
                                 />
                             )
                         )}
