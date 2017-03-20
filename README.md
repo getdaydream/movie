@@ -23,7 +23,7 @@ movie是使用React构建的网页，用来记录和发现电影。
 * mongoose
 * request
 
-### 已完成部分预览
+## 已完成部分预览
 ![主页](src/img/2017-03-20-1.png)  
 
 
