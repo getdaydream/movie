@@ -45,6 +45,5 @@ movie是使用React构建的网页，用来记录和发现电影。
 * 加入权限控制
 
 ### 爬虫
-* 即时信息的爬取
-
-
+* 即时更新爬虫信息
+* 根据[豆瓣Api V2](https://developers.douban.com/wiki/?title=movie_v2)调整Schema结构
