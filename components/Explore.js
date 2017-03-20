@@ -7,20 +7,24 @@ import MovieCard from './MovieCard';
 
 const style = {
     mainDiv: {
-
+        position: 'relative',
+        width: '100%'
     },
     selectorDiv: {
-
+        position: 'relative',
+        top: '6px',
+        margin: '6px 12px 12px'
     },
-    movieCardDiv: {
-        width: '100%',
-        height: '100%',
-
-        backgroundColor: 'rgb(235, 235, 235)',
+    CardGridWrapperDiv: {
+        width: '100%'
+    },
+    CardGridDiv: {
+        width: 'fit-content',
+        margin: 'auto',
 
         display: '-webkit-flex',
         flexFlow: 'row wrap',
-        justifyContent: 'space-around'
+        justifyContent: 'center'
     }
 };
 
@@ -34,7 +38,6 @@ export default class Explore extends React.Component {
             currentCountryTag: '全部',
         }
     }
-
 
     componentDidMount() {
         const url = 'http://localhost:3000/tag/' + this.state.currentCategoryTag + '/' + this.state.currentCountryTag;
@@ -51,10 +54,8 @@ export default class Explore extends React.Component {
         })
     }
 
-    updateViewOnTagChanged() {
-        // const url = 'http://localhost:3000/tag/' + this.state.currentCategoryTag + '/' + this.state.currentCountryTag;
-
-        const url = 'http://localhost:3000/tag/TV/日本';
+    updateCardGridOnTagChanged() {
+        const url = 'http://localhost:3000/tag/' + this.state.currentCategoryTag + '/' + this.state.currentCountryTag;
 
         fetch(url).then((response) => {
             if (response.ok) {
@@ -68,9 +69,11 @@ export default class Explore extends React.Component {
     }
 
     handleOnClickCategoryButton(tag) {
-        //此方法是异步的异步，执行后并不能马上获得下一状态
+        //setState执行是异步的，执行后并不能马上获得下一状态
         this.setState({
             currentCategoryTag: tag,
+        }, function () {
+            this.updateCardGridOnTagChanged();
         });
         // 这时的 currentCategoryTag 并不会马上改变
         // console.log(this.state.currentCategoryTag);
@@ -79,6 +82,8 @@ export default class Explore extends React.Component {
     handleOnClickCountryButton(tag) {
         this.setState({
             currentCountryTag: tag
+        }, function () {
+            this.updateCardGridOnTagChanged();
         });
     }
 
@@ -95,18 +100,20 @@ export default class Explore extends React.Component {
                         handleOnClickCountryButton={(tag) => this.handleOnClickCountryButton(tag)}
                     />
                 </div>
-                <div style={style.movieCardDiv}>
-                    {/*注意fetch数据前在此传递参数时this.state.movieDataArray中的各项还是undefined，直接传给子元素渲染会失败*/}
-                    {this.state.movieDataArray.length != 0 &&
-                    this.state.movieDataArray.map(function (movieData, index) {
-                        return (
-                            <MovieCard
-                                key={index}
-                                movieData={movieData}
-                            />
-                        )
-                    })
-                    }
+                <div style={style.CardGridWrapperDiv}>
+                    <div style={style.CardGridDiv}>
+                        {/*注意fetch数据前在此传递参数时this.state.movieDataArray中的各项还是undefined，直接传给子元素渲染会失败*/}
+                        {this.state.movieDataArray.length != 0 &&
+                        this.state.movieDataArray.map(function (movieData, index) {
+                            return (
+                                <MovieCard
+                                    key={index}
+                                    movieData={movieData}
+                                />
+                            )
+                        })
+                        }
+                    </div>
                 </div>
             </div>
         )

@@ -13,9 +13,6 @@ const style = {
         flexDirection: 'column',
         height: '100vh'
     },
-    searchbarDiv: {
-        flex: '0 0 auto'
-    },
     sidebarAndContentDiv : {
         height: '100%',
         flex: '1 1 auto',

@@ -8,67 +8,70 @@ import StarHalf from 'material-ui/svg-icons/toggle/star-half';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 const style = {
-    movieCardDiv: {
-        height: '320px',
-        minWidth: '150px',
-        maxWidth: '200px',
-        margin: '10px 0'
+    mainDiv: {
+        height: '292px',
+        width: '180px',
+        margin: '10px 12px'
     },
     paper: {
-        width: '100%',
         height: '100%',
-        borderRadius: '8px',
+        borderRadius: '12px',
     },
-    movieImgDiv: {
-        maxWidth: '200px',
+    movieDataDiv: {
         WebkitUserSelect: 'none',
         MozUserSelect: 'none',
         msUserSelect: 'none',
         userSelect: 'none',
+    },
+    movieImgDiv: {
+        height: '252px',
         position: 'relative'
     },
     movieImg: {
+        height: '252px',
+        width: '180px',
         borderRadius: '8px 8px 0 0',
-        width: '100%',
         objectFit: 'cover',
     },
     ratingDiv: {
         position: 'absolute',
         bottom: '10px',
         right: '10px',
-        width: '80px',
-        height: '100px',
+        width: '70px',
+        height: '80px',
         border: '1.8px solid #fff',
         borderRadius: '6px',
         background: 'rgba(0, 0, 0, 0.3)',
         color: '#fff',
         textAlign: 'center',
-        display: '-webkit-flex',
-        flexDirection: 'column'
     },
     ratingValueDiv: {
-        fontSize: '20px'
+        fontSize: '27px'
     },
     ratingValueP: {
-        margin: '0 0 10px 0'
-    },
-    ratingStarDiv: {
-
-    },
-    ratingSumDiv: {
-
+        margin: '0 0 0 0'
     },
     star: {
-        width: '15px',
-        height: '15px',
+        width: '13px',
+        height: '13px',
         color: 'rgb(255, 172 ,45)'
     },
-    movieNameP: {
+    ratingSumP: {
         margin: '0',
-        padding: '0 1px',
+        fontSize: '12px',
+    },
+    movieNameDiv: {
+        height: '40px',
         textAlign: 'center',
+
+        display: '-webkit-flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    movieNameP: {
+        padding: '0 1px',
         color: '#37a',
-        fontSize: '14px'
+        fontSize: '10px',
     }
 };
 
@@ -85,10 +88,6 @@ export default class MovieCard extends React.Component {
 
     onMouseOver = () => this.setState({shadow: 3});
     onMouseOut = () => this.setState({shadow: 1});
-
-    componentDidMount() {
-
-    }
 
     renderStars = (ratingValue) => {
       if (ratingValue < 2) {
@@ -146,39 +145,43 @@ export default class MovieCard extends React.Component {
 
     render() {
         return (
-            <div style={style.movieCardDiv}>
+            <div style={style.mainDiv}>
                 <Paper
                     style={style.paper}
                     onMouseOver={this.onMouseOver}
                     onMouseOut={this.onMouseOut}
                     zDepth={this.state.shadow}
                 >
-                    <div style={style.movieImgDiv}>
-                        <img
-                            style={style.movieImg}
-                            src={'http://localhost:3000/img/' + this.props.movieData.doubanId + '.jpg'}
-                            alt='img'
-                        />
-                        <div style={style.ratingDiv}>
-                            <div style={style.ratingValueDiv}>
-                                <p style={style.ratingValueP}>
-                                    {this.props.movieData.doubanRating.ratingValue.toFixed(1)}
-                                </p>
-                            </div>
-                            <div style={style.ratingStarDiv}>
-                                {this.renderStars(this.props.movieData.doubanRating.ratingValue)}
-                            </div>
-                            <div style={style.ratingSumDiv}>
-                                <p>
-                                    {this.props.movieData.doubanRating.ratingSum}人
-                                </p>
+                    <div style={style.movieDataDiv}>
+                        <div style={style.movieImgDiv}>
+                            <img
+                                style={style.movieImg}
+                                src={'http://localhost:3000/img/' + this.props.movieData.doubanId + '.jpg'}
+                                alt='img'
+                            />
+                            <div style={style.ratingDiv}>
+                                <div style={style.ratingValueDiv}>
+                                    <p style={style.ratingValueP}>
+                                        {this.props.movieData.doubanRating.ratingValue.toFixed(1)}
+                                    </p>
+                                </div>
+                                <div>
+                                    {this.renderStars(this.props.movieData.doubanRating.ratingValue)}
+                                </div>
+                                <div>
+                                    <p style={style.ratingSumP}>
+                                        {this.props.movieData.doubanRating.ratingSum}人
+                                    </p>
+                                </div>
                             </div>
                         </div>
+                        <div style={style.movieNameDiv}>
+                            <p style={style.movieNameP}>
+                                {this.props.movieData.name.split(' ')[0]}
+                                {this.props.movieData.year ? '(' + this.props.movieData.year + ')' : ''}
+                            </p>
+                        </div>
                     </div>
-                    <p style={style.movieNameP}>
-                        {this.props.movieData.name.split(' ')[0]}
-                        {this.props.movieData.year ? '(' + this.props.movieData.year + ')' : ''}
-                    </p>
                 </Paper>
             </div>
         )
