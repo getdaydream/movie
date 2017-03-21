@@ -4,21 +4,29 @@
 import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import configureStore from '../redux/store/configureStore';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Router, hashHistory } from 'react-router';
-
+import { Router, browserHistory } from 'react-router';
 import {routes} from './routes';
 
 // Needed for onTouchTap
+//material-ui所需要的插件
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-const content = (
-    <Router history={hashHistory} routes={routes} />
+
+//使用redux-thunk处理异步action
+const store = configureStore();
+
+const root = (
+    <Router history={browserHistory} routes={routes}/>
 );
 
 const renderRoot = () => ReactDOM.render(
-    <AppContainer>{content}</AppContainer>,
+    <Provider store={store}>
+        <AppContainer>{root}</AppContainer>
+    </Provider>,
     document.getElementById('root')
 );
 

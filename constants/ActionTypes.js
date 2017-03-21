@@ -1,0 +1,6 @@
+/**
+ * Created by Maple on 17/3/21.
+ */
+export const CHANGE_DEFAULT_TAG = 'CHANGE_DEFAULT_TAG';
+export const ADD_CUSTOM_TAG = 'ADD_CUSTOM_TAG';
+export const DELETE_TAG_TO_DEFAULT_TAG_ARRAY = 'DELETE_TAG_TO_DEFAULT_TAG_ARRAY';

@@ -36,14 +36,13 @@ export default class Selector extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-        }
-
     };
 
     //TODO !!!!!!!!怎样在onclick中传参 this.handleOnClick.bind(this, index)
 
     render() {
+        const { currentTags,onSelectedTagChanged } = this.props;
+
         return (
             <div style={style.mainDiv}>
                 <Paper
@@ -51,17 +50,17 @@ export default class Selector extends React.Component {
                     zDepth={2}
                 >
                     <div style={style.selectorLineDiv}>
-                       <FlatButton
-                           label='分类：'
-                           disabled={true}
-                       />
+                        <FlatButton
+                            label='分类：'
+                            disabled={true}
+                        />
                         {categoryData.map((data, index) => (
-                            <FlatButton
-                                key={index}
-                                label={data}
-                                backgroundColor={this.props.currentCategoryTag == data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
-                                onTouchTap={() => this.props.handleOnClickCategoryButton(data)}
-                            />
+                                <FlatButton
+                                    key={index}
+                                    label={data}
+                                    backgroundColor={currentTags[0] === data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
+                                    onTouchTap={() => onSelectedTagChanged(0, data)}
+                                />
                             )
                         )}
                     </div>
@@ -75,8 +74,8 @@ export default class Selector extends React.Component {
                                 <FlatButton
                                     key={index}
                                     label={data}
-                                    backgroundColor={this.props.currentCountryTag == data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
-                                    onTouchTap={() => this.props.handleOnClickCountryButton(data)}
+                                    backgroundColor={currentTags[1] === data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
+                                    onTouchTap={onSelectedTagChanged(1, data)}
                                 />
                             )
                         )}

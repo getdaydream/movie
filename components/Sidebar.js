@@ -67,7 +67,7 @@ export default class Sidebar extends React.Component {
                         />
                         <ListItem
                             style={style.listItem}
-                            primaryText="标签分类"
+                            primaryText="探索发现"
                             containerElement={<Link to="/explore"/>}
                         />
                         <Subheader>收藏</Subheader>

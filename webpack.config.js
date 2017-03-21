@@ -60,7 +60,7 @@ module.exports = {
         host: 'localhost',
         port: 8080,
 
-        historyApiFallback: false,
+        historyApiFallback: true,
         // respond to 404s with index.html
 
         hot: true,
