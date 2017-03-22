@@ -20,13 +20,13 @@ injectTapEventPlugin();
 const store = configureStore();
 
 const root = (
+    <Provider store={store}>
     <Router history={browserHistory} routes={routes}/>
+    </Provider>
 );
 
 const renderRoot = () => ReactDOM.render(
-    <Provider store={store}>
-        <AppContainer>{root}</AppContainer>
-    </Provider>,
+    <AppContainer>{root}</AppContainer>,
     document.getElementById('root')
 );
 

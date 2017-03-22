@@ -13,8 +13,9 @@ class SelectorContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const { currentTags } = state;
-    return currentTags;
+    return {
+        tags: state.get('tags')
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,11 +1,14 @@
 /**
  * Created by Maple on 17/3/21.
  */
+import { List } from 'immutable';
 
-const tags = (state = {currentTags: ['电影', '电影']}, action) => {
+const initialState = List.of('全部', '全部');
+
+const tags = (state = initialState , action) => {
   switch (action.type) {
       case 'CHANGE_DEFAULT_TAG':
-          return Object.assign([0, 0], state.currentTags);
+          return state.set(action.index, action.tag);
           break;
       default:
           return state

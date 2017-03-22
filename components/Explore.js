@@ -2,8 +2,8 @@
  * Created by Maple on 17/3/13.
  */
 import React from 'react';
-import SelectorContainer from '../containers/SelectorContainer';
 import MovieCard from './MovieCard';
+import SelectorContainer from '../containers/SelectorContainer';
 
 const style = {
     mainDiv: {
@@ -34,28 +34,12 @@ export default class Explore extends React.Component {
 
         this.state = {
             movieDataArray: [],
-            currentCategoryTag: '全部',
-            currentCountryTag: '全部',
         }
     }
 
     componentDidMount() {
-        const url = 'http://localhost:3000/tag/movie/日本';
-
-
-        fetch(url).then((response) => {
-            if (response.ok) {
-                response.json().then(movieDataArray => {
-                    this.setState({
-                        movieDataArray: movieDataArray
-                    })
-                })
-            }
-        })
-    }
-
-    updateCardGridOnTagChanged() {
         const url = 'http://localhost:3000/tag/' + this.state.currentCategoryTag + '/' + this.state.currentCountryTag;
+
 
         fetch(url).then((response) => {
             if (response.ok) {

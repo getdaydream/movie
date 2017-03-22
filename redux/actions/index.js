@@ -10,3 +10,10 @@ export const changeDefaultTag = (index, tag) => {
         tag
     }
 };
+
+export const clickButtonAndAdd = () => {
+    console.log('haha ');
+    return {
+      type: 'ADD_SUM'
+    }
+};

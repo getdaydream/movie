@@ -5,6 +5,7 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
+import TestButtonContainer from './TestButtonContainer'
 
 //TODO 自定义标签
 
@@ -33,15 +34,11 @@ const style = {
 
 export default class Selector extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-    };
 
     //TODO !!!!!!!!怎样在onclick中传参 this.handleOnClick.bind(this, index)
 
     render() {
-        const { currentTags,onSelectedTagChanged } = this.props;
+        const { tags, onSelectedTagChanged} =this.props;
 
         return (
             <div style={style.mainDiv}>
@@ -58,7 +55,7 @@ export default class Selector extends React.Component {
                                 <FlatButton
                                     key={index}
                                     label={data}
-                                    backgroundColor={currentTags[0] === data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
+                                    backgroundColor={tags.get(0) === data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
                                     onTouchTap={() => onSelectedTagChanged(0, data)}
                                 />
                             )
@@ -74,11 +71,14 @@ export default class Selector extends React.Component {
                                 <FlatButton
                                     key={index}
                                     label={data}
-                                    backgroundColor={currentTags[1] === data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
-                                    onTouchTap={onSelectedTagChanged(1, data)}
+                                    backgroundColor={tags.get(1) === data ? primaryFlatButtonBackgroundColor : defaultFlatButtonBackgroundColor}
+                                    onTouchTap={() => onSelectedTagChanged(1, data)}
                                 />
                             )
                         )}
+                    </div>
+                    <div style={style.selectorLineDiv}>
+                        <TestButtonContainer/>
                     </div>
                 </Paper>
             </div>
