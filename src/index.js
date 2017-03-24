@@ -15,9 +15,12 @@ import {routes} from './routes';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
+//配置redux-dev-tool
+//TODO 区别环境
+const initialState = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 //使用redux-thunk处理异步action
-const store = configureStore();
+const store = configureStore(initialState);
 
 const root = (
     <Provider store={store}>

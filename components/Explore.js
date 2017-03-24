@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import MovieCard from './MovieCard';
-import SelectorContainer from '../containers/SelectorContainer';
+import SelectorContainer from './containers/SelectorContainer';
 
 const style = {
     mainDiv: {
@@ -38,18 +38,6 @@ export default class Explore extends React.Component {
     }
 
     componentDidMount() {
-        const url = 'http://localhost:3000/tag/' + this.state.currentCategoryTag + '/' + this.state.currentCountryTag;
-
-
-        fetch(url).then((response) => {
-            if (response.ok) {
-                response.json().then(movieDataArray => {
-                    this.setState({
-                        movieDataArray: movieDataArray
-                    })
-                })
-            }
-        })
     }
 
     //TODO conditional rendering

@@ -6,29 +6,7 @@ import Sidebar from './Sidebar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-
-const style = {
-    mainDiv: {
-        display: '-webkit-flex',
-        flexDirection: 'column',
-        height: '100vh'
-    },
-    sidebarAndContentDiv : {
-        height: '100%',
-        flex: '1 1 auto',
-
-        display: '-webkit-flex'
-    },
-    sidebarDiv: {
-        width: '130px',
-        flex: 'none',
-    },
-    contentDiv: {
-        flex: '1 1 0%',
-        width: '100%',
-        overflowY: 'auto'
-    }
-};
+import style from './App.css';
 
 export default class App extends React.Component {
 
@@ -36,21 +14,20 @@ export default class App extends React.Component {
         return (
             <div>
                 <MuiThemeProvider>
-                    <div style={style.mainDiv}>
-                        <div style={style.sidebarAndContentDiv} >
-                            <div style={style.sidebarDiv}>
+                    <div className={style.root}>
+                        <div className={style.flexBox}>
+                            <div className={style.sidebar}>
                                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
                                     <Sidebar/>
                                 </MuiThemeProvider>
                             </div>
-                            <div style={style.contentDiv}>
+                            <div className={style.content}>
                                 {this.props.children}
                             </div>
                         </div>
                     </div>
                 </MuiThemeProvider>
             </div>
-
         )
     }
 }

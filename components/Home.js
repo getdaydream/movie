@@ -2,6 +2,7 @@
  * Created by Maple on 17/3/9.
  */
 import React from 'react';
+import styles from './Home.css';
 
 const style = {
     movieCardDiv: {
@@ -55,13 +56,13 @@ const style = {
         textDecoration: 'none',
         // cursor: 'auto'
     }
- };
+};
 
 export default class Home extends React.Component {
 
     render() {
         return (
-            <div style={style.movieCardDiv}>
+            <div className={styles.root}>
                 <div style={style.textMainDiv}>
                     <div style={style.textBoxDiv}>
                         <p style={style.quoteP}>

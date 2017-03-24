@@ -42,6 +42,14 @@ module.exports = {
                 ],
                 exclude: /node_modules/,
             },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader?modules"
+            },
+            {
+                test:/\.(png|jpg)$/,
+                loader:"url-loader"
+            }
         ],
     },
 

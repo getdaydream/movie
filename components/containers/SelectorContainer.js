@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import { connect } from 'react-redux';
-import Selector from '../components/Selector';
-import { changeDefaultTag } from '../redux/actions/index'
+import Selector from '../Selector';
+import { selectDefaultQuery, fetchMovieData } from '../../redux/actions/SelectorActions'
 
 class SelectorContainer extends React.Component {
     render() {
@@ -14,13 +14,14 @@ class SelectorContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        tags: state.get('tags')
+        $selectedDefaultQuery: state.get('selectedDefaultQuery'),
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSelectedTagChanged: (index, tag) => dispatch(changeDefaultTag(index, tag))
+        selectDefaultQuery: (key, value) => dispatch(selectDefaultQuery(key, value)),
+        fetchMovieData: () => dispatch(fetchMovieData())
     }
 };
 

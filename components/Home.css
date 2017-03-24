@@ -1,0 +1,9 @@
+.root {
+    width: 100%;
+    height: 100%;
+    background-image: url(../src/img/p1835.jpg);
+    background-size: cover;
+    position: relative;
+    font-size: 18px;
+}
+
