@@ -3,90 +3,111 @@
  */
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import DropDownMenu from 'material-ui/DropDownMenu';
+import FlatButton from 'material-ui/FlatButton';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import MenuItem from 'material-ui/MenuItem';
-import styles from './Selector.css';
+import style from './Selector.css';
 
 
 //TODO 自定义标签
-const dropDownMenuData = {
-    type: ['全部', '电影', '电视剧'],
-    country: ['全部', '中国', '日本', '韩国']
-};
+const menuDataKey = ['分类', '国家'];
 
-const style = {
-    mainDiv: {
-        width: '100%'
-    },
-    paper: {
-        width: '100%',
-    },
-    selectorLineDiv: {
-        width: '100%',
-        padding: '7px 0',
-
-        display: '-webkit-flex',
-        flexFlow: 'row wrap',
-        justifyContent: 'flex-start'
-    }
+const menuData = {
+    '分类': ['全部', '电影', '剧集'],
+    '国家': ['全部', '中国', '日本', '韩国', '美国', '英国', '其他']
 };
 
 export default class Selector extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            openMenuTitle: '',
+        }
+    }
 
-    handleTypeChange = (event, index) => {
-        const {selectDefaultQuery, fetchMovieData} = this.props;
-        selectDefaultQuery('type', dropDownMenuData.type[index]);
-        fetchMovieData();
+    handleTouchTap = (event, title) => {
+        // This prevents ghost click.
+        event.preventDefault();
+
+        this.setState({
+            openMenuTitle: title,
+            anchorEl: event.currentTarget,
+        });
     };
 
-    handleCountryChange = (event, index) => {
-        const {selectDefaultQuery, fetchMovieData} = this.props;
-        selectDefaultQuery('country', dropDownMenuData.country[index]);
+    handleRequestClose = () => {
+        this.setState({
+            openMenuTitle: '',
+        });
+    };
+
+    handleItemTouchTap = (event, menuItem, index, title) => {
+        this.handleRequestClose();
+        const {selectSuggestQuery, fetchMovieData} = this.props;
+        selectSuggestQuery(title, menuData[title][index]);
         fetchMovieData();
     };
 
     render() {
 
-        const { $selectedDefaultQuery } = this.props;
+        const {selectedSuggestQuery} = this.props;
 
         return (
-            <div style={style.mainDiv}>
-                <Paper
-                    style={style.paper}
-                    zDepth={2}
-                >
-                    <div style={style.selectorLineDiv}>
-                        <DropDownMenu
-                            value={dropDownMenuData.type.indexOf($selectedDefaultQuery.get('type'))}
-                            onChange={this.handleTypeChange}
-                        >
-                            {dropDownMenuData.type.map((v, index) => (
-                                <MenuItem
-                                    key={index}
-                                    value={index}
-                                    primaryText={v}
-                                />
-                            ))}
-                        </DropDownMenu>
-                        <DropDownMenu
-                            value={dropDownMenuData.country.indexOf($selectedDefaultQuery.get('country'))}
-                            onChange={this.handleCountryChange}
-                        >
-                            {dropDownMenuData.country.map((v, index) => (
-                                <MenuItem
-                                    key={index}
-                                    value={index}
-                                    primaryText={v}
-                                />
-                            ))}
-                        </DropDownMenu>
-                    </div>
-                    <div style={style.selectorLineDiv}>
+            <Paper
+                className={style.paper}
+                zDepth={2}
+            >
 
-                    </div>
-                </Paper>
-            </div>
+                {menuDataKey.map((title) => {
+                    return (
+                        <div
+                            key={title}
+                            className={style.menuBox}
+                        >
+                            <p className={style.text}>
+                                {title}
+                            </p>
+                            <FlatButton
+                                style={{
+                                    padding: '0 0 5px 0',
+                                    borderBottom: '1px solid #D2D2D2',
+                                    minWidth: '0',
+                                    width: 'auto'
+                                }}
+                                labelStyle={{color: '#212121', padding: '0 4px 0 0'}}
+                                onTouchTap={(event) => this.handleTouchTap(event, title)}
+                                label={selectedSuggestQuery.get(title)}
+                                labelPosition="before"
+                                icon={<ExpandMore style={{margin: 0}}/>}
+                            />
+                            <Popover
+                                open={title === this.state.openMenuTitle}
+                                anchorEl={this.state.anchorEl}
+                                anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                                targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                                onRequestClose={this.handleRequestClose}
+                            >
+                                <Menu
+                                    value={selectedSuggestQuery.get(title)}
+                                    onItemTouchTap={(event, menuItem, index) => this.handleItemTouchTap(event, menuItem, index, title)}
+                                >
+                                    {menuData[title].map((v, index) => (
+                                        <MenuItem
+                                            style={{fontSize: '14px'}}
+                                            key={index}
+                                            value={v}
+                                            primaryText={v}
+                                        />
+                                    ))}
+                                </Menu>
+                            </Popover>
+                        </div>
+                    )
+                })}
+            </Paper>
         )
     }
 }

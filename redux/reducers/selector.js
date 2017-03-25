@@ -4,12 +4,12 @@
 import * as ActionTypes from '../../constants/ActionTypes';
 import { Map, List, fromJS } from 'immutable';
 
-const initialSelectedDefaultQuery = Map({
-    type: '全部',
-    country: '全部'
+const initialSelectedSuggestQuery = Map({
+    分类: '全部',
+    国家: '全部'
 });
 
-export const selectedDefaultQuery = (state = initialSelectedDefaultQuery, action) => {
+export const selectedSuggestQuery = (state = initialSelectedSuggestQuery, action) => {
     switch (action.type) {
         case ActionTypes.SELECT_DEFAULT_QUERY:
             return state.set(action.key, action.value);
@@ -37,7 +37,10 @@ export const selectedDefaultQuery = (state = initialSelectedDefaultQuery, action
 //     }
 // };
 
-export const movieData = (state = Map({isFetching: false}), action) => {
+export const movieData = (state = Map({
+                              isFetching: false,
+                              items: List()
+                          }), action) => {
     switch (action.type) {
         case ActionTypes.REQUEST_MOVIE_DATA:
             return state.set('isFetching', true);
@@ -45,7 +48,7 @@ export const movieData = (state = Map({isFetching: false}), action) => {
         case ActionTypes.RECEIVE_MOVIE_DATA:
             return state
                 .set('isFetching', false)
-                .set('$items', fromJS(action.json));
+                .set('items', fromJS(action.json));
 
             break;
         default:

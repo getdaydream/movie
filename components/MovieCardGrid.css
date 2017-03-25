@@ -1,0 +1,8 @@
+.root {
+    width: 100%;
+    margin: auto;
+
+    display: -webkit-flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}

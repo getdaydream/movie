@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Selector from '../Selector';
-import { selectDefaultQuery, fetchMovieData } from '../../redux/actions/SelectorActions'
+import { selectSuggestQuery, fetchMovieData } from '../../redux/actions/SelectorActions'
 
 class SelectorContainer extends React.Component {
     render() {
@@ -14,13 +14,13 @@ class SelectorContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        $selectedDefaultQuery: state.get('selectedDefaultQuery'),
+        selectedSuggestQuery: state.get('selectedSuggestQuery'),
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        selectDefaultQuery: (key, value) => dispatch(selectDefaultQuery(key, value)),
+        selectSuggestQuery: (key, value) => dispatch(selectSuggestQuery(key, value)),
         fetchMovieData: () => dispatch(fetchMovieData())
     }
 };

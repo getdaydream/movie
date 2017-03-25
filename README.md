@@ -13,10 +13,16 @@ movie是使用React构建的网页，用来记录和发现电影。
 ## **Stack**
 ### 前端
 * React
-* material-ui
-* react-router
+* redux
 * immutable
-* webpack  
+* react-router
+* material-ui
+* webpack 
+
+其他：
+* react-redux
+* redux-immutable
+* redux-thunk
 
 ### 后端
 * express

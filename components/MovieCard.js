@@ -1,5 +1,5 @@
 /**
- * Created by Maple on 17/3/15.
+ * Created by Maple on 17/3/25.
  */
 import React from 'react';
 import Paper from 'material-ui/Paper';
@@ -75,9 +75,7 @@ const style = {
     }
 };
 
-//TODO 各个卡片高度不同， 文字高度不同
 export default class MovieCard extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -86,64 +84,34 @@ export default class MovieCard extends React.Component {
         }
     }
 
-    onMouseOver = () => this.setState({shadow: 3});
-    onMouseOut = () => this.setState({shadow: 1});
+    onMouseOver = () => {
+        this.setState({shadow: 3});
+    };
 
-    renderStars = (ratingValue) => {
-      if (ratingValue < 2) {
-          return (
-              <div>
-                  <StarHalf style={style.star}/>
-                  <StarBorder style={style.star}/>
-                  <StarBorder style={style.star}/>
-                  <StarBorder style={style.star}/>
-                  <StarBorder style={style.star}/>
-              </div>
-          )
-      }  else if (ratingValue >= 2 && ratingValue < 4) {
-          return (
-              <div>
-                  <Star style={style.star}/>
-                  <StarHalf style={style.star}/>
-                  <StarBorder style={style.star}/>
-                  <StarBorder style={style.star}/>
-                  <StarBorder style={style.star}/>
-              </div>
-          )
-      } else if (ratingValue >= 4 && ratingValue < 6) {
-          return (
-              <div>
-                  <Star style={style.star}/>
-                  <Star style={style.star}/>
-                  <StarHalf style={style.star}/>
-                  <StarBorder style={style.star}/>
-                  <StarBorder style={style.star}/>
-              </div>
-          )
-      } else if (ratingValue >= 6 && ratingValue < 8) {
-            return (
-                <div>
-                    <Star style={style.star}/>
-                    <Star style={style.star}/>
-                    <Star style={style.star}/>
-                    <StarHalf style={style.star}/>
-                    <StarBorder style={style.star}/>
-                </div>
-            )
-        } else if (ratingValue >= 8) {
-          return (
-              <div>
-                  <Star style={style.star}/>
-                  <Star style={style.star}/>
-                  <Star style={style.star}/>
-                  <Star style={style.star}/>
-                  <StarHalf style={style.star}/>
-              </div>
-          )
-      }
+    onMouseOut = () => {
+        this.setState({shadow: 1});
+    };
+
+    renderStars = (rating) => {
+        return [rating, rating, rating, rating, rating].map((rating, index) => {
+            if (rating >= 2 + index * 2) {
+                return <Star key={index} style={style.star}/>
+            } else if (rating < index * 2) {
+                return <StarBorder key={index} style={style.star}/>
+            } else return <StarHalf key={index} style={style.star}/>
+        });
     };
 
     render() {
+
+        const {
+            doubanId,
+            rating,
+            rating_count,
+            title,
+            year
+        } = this.props;
+
         return (
             <div style={style.mainDiv}>
                 <Paper
@@ -156,29 +124,29 @@ export default class MovieCard extends React.Component {
                         <div style={style.movieImgDiv}>
                             <img
                                 style={style.movieImg}
-                                src={'http://localhost:3000/img/' + this.props.movieData.doubanId + '.jpg'}
+                                src={'http://localhost:3000/img/' + doubanId + '.jpg'}
                                 alt='img'
                             />
                             <div style={style.ratingDiv}>
                                 <div style={style.ratingValueDiv}>
                                     <p style={style.ratingValueP}>
-                                        {this.props.movieData.doubanRating.ratingValue.toFixed(1)}
+                                        {rating.toFixed(1)}
                                     </p>
                                 </div>
                                 <div>
-                                    {this.renderStars(this.props.movieData.doubanRating.ratingValue)}
+                                    {this.renderStars(rating)}
                                 </div>
                                 <div>
                                     <p style={style.ratingSumP}>
-                                        {this.props.movieData.doubanRating.ratingSum}人
+                                        {rating_count}人
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div style={style.movieNameDiv}>
                             <p style={style.movieNameP}>
-                                {this.props.movieData.name.split(' ')[0]}
-                                {this.props.movieData.year ? '(' + this.props.movieData.year + ')' : ''}
+                                {title.split(' ')[0]}
+                                { year ? '(' + year + ')' : ''}
                             </p>
                         </div>
                     </div>

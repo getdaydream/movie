@@ -3,7 +3,7 @@
  */
 import * as ActionTypes from '../../constants/ActionTypes';
 
-export const selectDefaultQuery = (key, value) => {
+export const selectSuggestQuery = (key, value) => {
     return {
         type: ActionTypes.SELECT_DEFAULT_QUERY,
         key,
@@ -24,11 +24,10 @@ export const receiveMovieData = (json) => {
     }
 };
 
-const getRequestUrl = ($state) => {
+const getRequestUrl = (state) => {
     let movieQuery = '';
-    console.log('hhaa');
 
-    $state.get('selectedDefaultQuery').forEach((value, key) => {
+    state.get('selectedSuggestQuery').forEach((value, key) => {
         if (value !== '全部') {
             movieQuery += key + '=' + value + '&'
         }
