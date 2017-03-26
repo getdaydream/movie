@@ -6,74 +6,7 @@ import Paper from 'material-ui/Paper';
 import Star from 'material-ui/svg-icons/toggle/star';
 import StarHalf from 'material-ui/svg-icons/toggle/star-half';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-
-const style = {
-    mainDiv: {
-        height: '292px',
-        width: '180px',
-        margin: '10px 12px'
-    },
-    paper: {
-        height: '100%',
-        borderRadius: '12px',
-    },
-    movieDataDiv: {
-        WebkitUserSelect: 'none',
-        MozUserSelect: 'none',
-        msUserSelect: 'none',
-        userSelect: 'none',
-    },
-    movieImgDiv: {
-        height: '252px',
-        position: 'relative'
-    },
-    movieImg: {
-        height: '252px',
-        width: '180px',
-        borderRadius: '8px 8px 0 0',
-        objectFit: 'cover',
-    },
-    ratingDiv: {
-        position: 'absolute',
-        bottom: '10px',
-        right: '10px',
-        width: '70px',
-        height: '80px',
-        border: '1.8px solid #fff',
-        borderRadius: '6px',
-        background: 'rgba(0, 0, 0, 0.3)',
-        color: '#fff',
-        textAlign: 'center',
-    },
-    ratingValueDiv: {
-        fontSize: '27px'
-    },
-    ratingValueP: {
-        margin: '0 0 0 0'
-    },
-    star: {
-        width: '13px',
-        height: '13px',
-        color: 'rgb(255, 172 ,45)'
-    },
-    ratingSumP: {
-        margin: '0',
-        fontSize: '12px',
-    },
-    movieNameDiv: {
-        height: '40px',
-        textAlign: 'center',
-
-        display: '-webkit-flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    movieNameP: {
-        padding: '0 1px',
-        color: '#37a',
-        fontSize: '10px',
-    }
-};
+import style from './MovieCard.css';
 
 export default class MovieCard extends React.Component {
     constructor(props) {
@@ -93,12 +26,12 @@ export default class MovieCard extends React.Component {
     };
 
     renderStars = (rating) => {
-        return [rating, rating, rating, rating, rating].map((rating, index) => {
+        return new Array(5).fill(rating).map((rating, index) => {
             if (rating >= 2 + index * 2) {
-                return <Star key={index} style={style.star}/>
+                return <Star key={index} style={{width: '13px', height: '13px', color: '#FFAC2D'}}/>
             } else if (rating < index * 2) {
-                return <StarBorder key={index} style={style.star}/>
-            } else return <StarHalf key={index} style={style.star}/>
+                return <StarBorder key={index} style={{width: '13px', height: '13px', color: '#FFAC2D'}}/>
+            } else return <StarHalf key={index} style={{width: '13px', height: '13px', color: '#FFAC2D'}}/>
         });
     };
 
@@ -113,23 +46,23 @@ export default class MovieCard extends React.Component {
         } = this.props;
 
         return (
-            <div style={style.mainDiv}>
+            <div className={style.root}>
                 <Paper
-                    style={style.paper}
+                    style={{height: '100%', borderRadius: '12px',}}
                     onMouseOver={this.onMouseOver}
                     onMouseOut={this.onMouseOut}
                     zDepth={this.state.shadow}
                 >
-                    <div style={style.movieDataDiv}>
-                        <div style={style.movieImgDiv}>
+                    <div className={style.movieData}>
+                        <div className={style.movieImgDiv}>
                             <img
-                                style={style.movieImg}
+                               className={style.movieImg}
                                 src={'http://localhost:3000/img/' + doubanId + '.jpg'}
                                 alt='img'
                             />
-                            <div style={style.ratingDiv}>
+                            <div className={style.ratingData}>
                                 <div style={style.ratingValueDiv}>
-                                    <p style={style.ratingValueP}>
+                                    <p className={style.ratingText}>
                                         {rating.toFixed(1)}
                                     </p>
                                 </div>
@@ -137,14 +70,14 @@ export default class MovieCard extends React.Component {
                                     {this.renderStars(rating)}
                                 </div>
                                 <div>
-                                    <p style={style.ratingSumP}>
+                                    <p className={style.ratingCountText}>
                                         {rating_count}人
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div style={style.movieNameDiv}>
-                            <p style={style.movieNameP}>
+                        <div className={style.movieNameDiv}>
+                            <p className={style.movieNameText}>
                                 {title.split(' ')[0]}
                                 { year ? '(' + year + ')' : ''}
                             </p>

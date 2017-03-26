@@ -1,0 +1,19 @@
+.root {
+    position: relative;
+    width: 100%;
+}
+
+.selector {
+    position: relative;
+    top: 6px;
+    margin: 6px 12px 12px;
+}
+
+.cardGrid {
+    width: fit-content;
+    margin: auto;
+
+    display: -webkit-flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}

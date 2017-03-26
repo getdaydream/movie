@@ -6,6 +6,7 @@ import MovieCard from './MovieCard';
 import styles from './MovieCardGrid.css';
 
 export default class MovieCardGrid extends React.Component {
+
     render() {
         const {items} = this.props;
 

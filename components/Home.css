@@ -4,6 +4,49 @@
     background-image: url(../src/img/p1835.jpg);
     background-size: cover;
     position: relative;
-    font-size: 18px;
 }
 
+.textMain {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 40px;
+    padding-top: 3rem;
+
+    color: #000;
+    background-color: #fff;
+    font-family: STFangsong,Fangsong,FangSong_GB2312,STSong,serif;
+    text-align: center;
+}
+
+.textBox {
+    max-width: 1024px;
+    padding: 0 1.5rem;
+    margin: 0 auto;
+}
+
+.quote {
+    margin: 0;
+    font-size: calc(1.7rem + 3 * (100vw - 414px) / 952);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.reference {
+    width: 100%;
+    text-align: right;
+    font-size: calc(1.0rem + 2.7 * (100vw - 414px) / 952);
+    margin-top: 1.5rem;
+}
+
+.span {
+    user-select: none;
+}
+
+.title {
+    width: 100%;
+    margin: 0;
+    color: inherit;
+    text-decoration: none;
+    /*cursor: auto;*/
+}

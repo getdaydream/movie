@@ -5,8 +5,10 @@ import * as ActionTypes from '../../constants/ActionTypes';
 import { Map, List, fromJS } from 'immutable';
 
 const initialSelectedSuggestQuery = Map({
-    分类: '全部',
-    国家: '全部'
+    '分类': '全部',
+    '制片国家/地区': '全部',
+    '类型': '全部',
+    '年代': '全部',
 });
 
 export const selectedSuggestQuery = (state = initialSelectedSuggestQuery, action) => {

@@ -1,0 +1,64 @@
+.root {
+    height: 292px;
+    width: 180px;
+    margin: 10px 12px;
+}
+
+.paper {
+    height: 100%;
+    border-radius: 12px;
+}
+
+.movieData {
+    user-select: none;
+}
+
+.movieImgDiv {
+    height: 252px;
+    position: relative;
+}
+
+.movieImg {
+    height: 252px;
+    width: 180px;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+}
+
+.ratingData {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 70px;
+    height: 80px;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.ratingText {
+    margin: 5px 0 0;
+    font-size: 27px;
+}
+
+.ratingCountText {
+    margin: 0;
+    font-size: 12px;
+}
+
+.movieNameDiv {
+    height: 40px;
+    text-align: center;
+
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movieNameText {
+    padding: 0 1px;
+    color: #37a;
+    font-size: 10px;
+}

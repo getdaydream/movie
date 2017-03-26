@@ -12,11 +12,13 @@ import style from './Selector.css';
 
 
 //TODO 自定义标签
-const menuDataKey = ['分类', '国家'];
+const menuDataKey = ['分类', '制片国家/地区', '类型','年代'];
 
 const menuData = {
     '分类': ['全部', '电影', '剧集'],
-    '国家': ['全部', '中国', '日本', '韩国', '美国', '英国', '其他']
+    '制片国家/地区': ['全部', '中国', '日本', '韩国', '美国', '英国', '其他'],
+    '类型': ['全部', '剧情', '奇幻','喜剧', '动画', '科幻', '动作', '纪录片'],
+    '年代': new Array(99).fill(16).map((v, index) => v + 2000 - index)
 };
 
 export default class Selector extends React.Component {
@@ -26,6 +28,11 @@ export default class Selector extends React.Component {
         this.state = {
             openMenuTitle: '',
         }
+    }
+
+    componentDidMount() {
+        const { fetchMovieData } = this.props;
+        fetchMovieData();
     }
 
     handleTouchTap = (event, title) => {
@@ -45,7 +52,10 @@ export default class Selector extends React.Component {
     };
 
     handleItemTouchTap = (event, menuItem, index, title) => {
-        this.handleRequestClose();
+        this.setState({
+            openMenuTitle: '',
+        });
+
         const {selectSuggestQuery, fetchMovieData} = this.props;
         selectSuggestQuery(title, menuData[title][index]);
         fetchMovieData();
@@ -53,7 +63,7 @@ export default class Selector extends React.Component {
 
     render() {
 
-        const {selectedSuggestQuery} = this.props;
+        const { selectedSuggestQuery } = this.props;
 
         return (
             <Paper
@@ -77,7 +87,7 @@ export default class Selector extends React.Component {
                                     minWidth: '0',
                                     width: 'auto'
                                 }}
-                                labelStyle={{color: '#212121', padding: '0 4px 0 0'}}
+                                labelStyle={{color: '#212121', padding: '0 4px'}}
                                 onTouchTap={(event) => this.handleTouchTap(event, title)}
                                 label={selectedSuggestQuery.get(title)}
                                 labelPosition="before"
@@ -92,6 +102,7 @@ export default class Selector extends React.Component {
                             >
                                 <Menu
                                     value={selectedSuggestQuery.get(title)}
+                                    maxHeight={272}
                                     onItemTouchTap={(event, menuItem, index) => this.handleItemTouchTap(event, menuItem, index, title)}
                                 >
                                     {menuData[title].map((v, index) => (
@@ -103,7 +114,7 @@ export default class Selector extends React.Component {
                                         />
                                     ))}
                                 </Menu>
-                            </Popover>
+                        </Popover>
                         </div>
                     )
                 })}
