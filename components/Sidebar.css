@@ -7,3 +7,7 @@
     -ms-user-select: none;
     user-select: none
 }
+
+.link {
+    border-left: 5px solid #448AFF;
+}
