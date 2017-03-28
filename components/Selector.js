@@ -2,7 +2,6 @@
  * Created by Maple on 17/3/17.
  */
 import React from 'react';
-import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
@@ -72,10 +71,7 @@ export default class Selector extends React.Component {
 
         return (
             <div>
-                <Paper
-                    className={style.paper}
-                    zDepth={2}
-                >
+                <div className={style.paper}>
 
                     {menuDataKey.map((title) => {
                         return (
@@ -124,7 +120,7 @@ export default class Selector extends React.Component {
                             </div>
                         )
                     })}
-                </Paper>
+                </div>
                 <div>
                     {this.props.children}
                 </div>

@@ -6,6 +6,11 @@ import style from './Home.css';
 
 export default class Home extends React.Component {
 
+    componentDidMount() {
+        console.log(this.props.location.pathname
+        );
+    }
+
     render() {
         return (
             <div className={style.root}>

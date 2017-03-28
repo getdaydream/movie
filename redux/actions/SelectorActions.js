@@ -55,6 +55,7 @@ export const fetchMovieData = () => {
     }
 };
 
+//TODO 优化刷新时的行为
 // export const shouldFetchMovieData =($state) => {
 //     return !$state.get('movieData').get('isFetching');
 // };

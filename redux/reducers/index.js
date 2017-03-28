@@ -3,11 +3,13 @@
  */
 import { combineReducers } from 'redux-immutable';
 import { selectedSuggestQuery, movieData} from './selector';
+import { path } from './route';
 
 // 这种写法有一个前提，就是 State 的属性名必须与子 Reducer 同名。
 const rootReducer = combineReducers({
     selectedSuggestQuery,
     movieData,
+    path
 });
 
 export default rootReducer;
