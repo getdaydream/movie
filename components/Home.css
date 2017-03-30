@@ -1,11 +1,21 @@
 .root {
-    background-image: url(../src/img/p1835.jpg);
-    background-size: cover;
-    position: relative;
     height: 100%;
 }
 
-.textMain {
+.mainContent {
+    box-sizing: border-box;
+    padding-top: 64px;
+    height: 100%;
+}
+
+.background {
+    position: relative;
+    height: 100%;
+    background-image: url(../src/img/p1835.jpg);
+    background-size: cover;
+}
+
+.textBoxRoot {
     position: absolute;
     bottom: 0;
     width: 100%;

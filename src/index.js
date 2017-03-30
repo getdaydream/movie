@@ -5,7 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from '../redux/store/configureStore';
+import store from '../redux/store/index';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Router, browserHistory } from 'react-router';
 import {routes} from './routes';
@@ -15,16 +15,11 @@ import {routes} from './routes';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-//配置redux-dev-tool
-//TODO 区别环境
-const initialState = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-
-//使用redux-thunk处理异步action
-const store = configureStore(initialState);
-
 const root = (
     <Provider store={store}>
-    <Router history={browserHistory} routes={routes}/>
+        <Router history={browserHistory}>
+            {routes}
+        </Router>
     </Provider>
 );
 

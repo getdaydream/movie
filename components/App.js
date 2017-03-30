@@ -2,7 +2,6 @@
  * Created by Maple on 17/3/5.
  */
 import React from 'react';
-import Header from './Header';
 import Drawer from './Drawer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -15,8 +14,7 @@ export default class App extends React.Component {
         return (
             <MuiThemeProvider>
                 <div>
-                    <Header/>
-                    <div className={style.content}>
+                    <div className={style.main}>
                         {this.props.children}
                     </div>
                     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>

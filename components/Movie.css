@@ -1,0 +1,33 @@
+.root {
+    padding: 20px 80px;
+    border: 1px solid #3377aa;
+
+    display: -webkit-flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+}
+
+.movieData {
+    display: -webkit-flex;
+    flex-flow: column nowrap;
+}
+
+.img {
+    user-select: none;
+}
+
+.buttonGroup {
+
+}
+
+.information {
+
+}
+
+.summary {
+
+}
+
+.comments {
+
+}

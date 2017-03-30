@@ -21,6 +21,8 @@ export const selectedSuggestQuery = (state = initialSelectedSuggestQuery, action
     }
 };
 
+
+
 // const fetchStatus = ($state = Map({
 //                       isFetching: false,
 //                       $items: List()
@@ -40,6 +42,7 @@ export const selectedSuggestQuery = (state = initialSelectedSuggestQuery, action
 // };
 
 export const movieData = (state = Map({
+                              movie: Map(),
                               isFetching: false,
                               items: List()
                           }), action) => {
@@ -53,6 +56,10 @@ export const movieData = (state = Map({
                 .set('items', fromJS(action.json));
 
             break;
+        case ActionTypes.SELECT_MOVIE:
+            return state.set('movie', state.get('items').find((v) => {
+                    return v.get('id') === action.id
+                }));
         default:
             return state;
     }

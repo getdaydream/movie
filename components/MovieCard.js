@@ -1,11 +1,12 @@
 /**
  * Created by Maple on 17/3/25.
  */
-import React from 'react';
+import  React from 'react';
 import Paper from 'material-ui/Paper';
 import Star from 'material-ui/svg-icons/toggle/star';
 import StarHalf from 'material-ui/svg-icons/toggle/star-half';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import { Link } from 'react-router';
 import style from './MovieCard.css';
 
 export default class MovieCard extends React.Component {
@@ -35,10 +36,17 @@ export default class MovieCard extends React.Component {
         });
     };
 
+    handleClick = (id) => {
+        const {
+            selectMovie
+        } = this.props;
+        selectMovie(id);
+    };
+
     render() {
 
         const {
-            doubanId,
+            id,
             rating,
             rating_count,
             title,
@@ -46,45 +54,52 @@ export default class MovieCard extends React.Component {
         } = this.props;
 
         return (
-            <div className={style.root}>
-                <Paper
-                    style={{height: '100%', borderRadius: '12px',}}
-                    onMouseOver={this.onMouseOver}
-                    onMouseOut={this.onMouseOut}
-                    zDepth={this.state.shadow}
+            <Link
+                to={`/explore/movie/${id}`}
+                style={{textDecoration: 'none'}}
+            >
+                <div className={style.root}
+                     onClick={() => this.handleClick(id)}
                 >
-                    <div className={style.movieData}>
-                        <div className={style.movieImgDiv}>
-                            <img
-                               className={style.movieImg}
-                                src={'http://localhost:3000/img/' + doubanId + '.jpg'}
-                                alt='img'
-                            />
-                            <div className={style.ratingData}>
-                                <div style={style.ratingValueDiv}>
-                                    <p className={style.ratingText}>
-                                        {rating.toFixed(1)}
-                                    </p>
-                                </div>
-                                <div>
-                                    {this.renderStars(rating)}
-                                </div>
-                                <div>
-                                    <p className={style.ratingCountText}>
-                                        {rating_count}人
-                                    </p>
+                    <Paper
+                        style={{height: '100%', borderRadius: '12px',}}
+                        onMouseOver={this.onMouseOver}
+                        onMouseOut={this.onMouseOut}
+                        zDepth={this.state.shadow}
+                    >
+                        <div className={style.movieData}>
+                            <div className={style.movieImgDiv}>
+                                <img
+                                    className={style.movieImg}
+                                    src={`http://localhost:3000/img/${id}.jpg`}
+                                    alt={`${id}.jpg`}
+                                />
+                                <div className={style.ratingData}>
+                                    <div style={style.ratingValueDiv}>
+                                        <p className={style.ratingText}>
+                                            {rating.toFixed(1)}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        {this.renderStars(rating)}
+                                    </div>
+                                    <div>
+                                        <p className={style.ratingCountText}>
+                                            {rating_count}人
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                            <div className={style.movieNameDiv}>
+                                <p className={style.movieNameText}>
+                                    {title.split(' ')[0]}
+                                    { year ? '(' + year + ')' : ''}
+                                </p>
+                            </div>
                         </div>
-                        <div className={style.movieNameDiv}>
-                            <p className={style.movieNameText}>
-                                {title.split(' ')[0]}
-                                { year ? '(' + year + ')' : ''}
-                            </p>
-                        </div>
-                    </div>
-                </Paper>
-            </div>
+                    </Paper>
+                </div>
+            </Link>
         )
     }
 }

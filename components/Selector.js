@@ -72,7 +72,6 @@ export default class Selector extends React.Component {
         return (
             <div>
                 <div className={style.paper}>
-
                     {menuDataKey.map((title) => {
                         return (
                             <div
@@ -120,9 +119,6 @@ export default class Selector extends React.Component {
                             </div>
                         )
                     })}
-                </div>
-                <div>
-                    {this.props.children}
                 </div>
             </div>
         )

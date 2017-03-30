@@ -54,17 +54,17 @@ export default class Sidebar extends React.Component {
                         />
                         <ListItem
                             primaryText="探索发现"
-                            containerElement={<Link to="explore" activeStyle={{borderLeft: '5px solid #448AFF'}}/>}
+                            containerElement={<Link to="/explore" activeStyle={{borderLeft: '5px solid #448AFF'}}/>}
                         />
                         <Subheader>收藏</Subheader>
-                        <ListItem
-                            primaryText="在看"
-                        />
                         <ListItem
                             primaryText="想看"
                         />
                         <ListItem
                             primaryText="看过"
+                        />
+                        <ListItem
+                            primaryText="喜欢"
                         />
                     </List>
                 </Drawer>

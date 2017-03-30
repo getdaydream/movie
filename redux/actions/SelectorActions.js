@@ -11,6 +11,13 @@ export const selectSuggestQuery = (key, value) => {
     }
 };
 
+export const selectMovie = (id) => {
+    return {
+        type: ActionTypes.SELECT_MOVIE,
+        id
+    }
+};
+
 export const requestMovieData = () => {
     return {
         type: ActionTypes.REQUEST_MOVIE_DATA,

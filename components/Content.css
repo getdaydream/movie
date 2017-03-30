@@ -1,0 +1,11 @@
+.root {
+    height: 100%;
+}
+
+.content {
+    padding-top: 64px;
+}
+
+.contentPadding {
+    padding: 20px;
+}

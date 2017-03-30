@@ -1,0 +1,16 @@
+.root {
+    width: 100%;
+    display:  -webkit-flex;
+    flex-flow: row nowrap;
+}
+
+.button {
+    display: inline;
+}
+
+.title {
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

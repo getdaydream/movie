@@ -4,6 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MovieCardGrid from '../MovieCardGrid';
+import { selectMovie } from '../../redux/actions/SelectorActions';
 
 class MovieCardGridContainer extends React.Component {
     render() {
@@ -13,8 +14,17 @@ class MovieCardGridContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.get('movieData').get('items'),
+        items: state.get('movieData').get('items')
     };
 };
 
-export default connect(mapStateToProps)(MovieCardGridContainer)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectMovie: (id) => dispatch(selectMovie(id))
+    }
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MovieCardGridContainer)
