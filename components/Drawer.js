@@ -9,6 +9,8 @@ import Subheader from 'material-ui/Subheader';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 import { Link, IndexLink } from 'react-router';
+import store from '../redux/store/index';
+import { resetSuggestQuery, fetchMovieData} from '../redux/actions/SelectorActions'
 import style from './Drawer.css';
 
 const inlineStyle = {
@@ -22,6 +24,11 @@ const inlineStyle = {
 };
 
 export default class Sidebar extends React.Component {
+
+    handleClickExplore = () => {
+        store.dispatch(resetSuggestQuery());
+        store.dispatch(fetchMovieData())
+    };
 
     render() {
         return (
@@ -47,14 +54,9 @@ export default class Sidebar extends React.Component {
                         <Divider/>
                         <Subheader>发现</Subheader>
                         <ListItem
-                            primaryText="正在热映"
-                        />
-                        <ListItem
-                            primaryText= '即将上映'
-                        />
-                        <ListItem
                             primaryText="探索发现"
                             containerElement={<Link to="/explore" activeStyle={{borderLeft: '5px solid #448AFF'}}/>}
+                            onClick={this.handleClickExplore}
                         />
                         <Subheader>收藏</Subheader>
                         <ListItem

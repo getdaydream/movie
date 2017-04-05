@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import MovieCard from './MovieCard';
+import Pagination from './Pagination';
 import style from './MovieCardGrid.css';
 
 export default class MovieCardGrid extends React.Component {
@@ -27,6 +28,9 @@ export default class MovieCardGrid extends React.Component {
                             {...data}
                         />
                     })}
+                    <Pagination
+                        pageCount={3}
+                    />
                 </div>
             </div>
         )

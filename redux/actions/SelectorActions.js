@@ -5,9 +5,15 @@ import * as ActionTypes from '../../constants/ActionTypes';
 
 export const selectSuggestQuery = (key, value) => {
     return {
-        type: ActionTypes.SELECT_DEFAULT_QUERY,
+        type: ActionTypes.SELECT_SUGGEST_QUERY,
         key,
         value
+    }
+};
+
+export const resetSuggestQuery = () => {
+    return {
+        type: ActionTypes.RESET_SUGGEST_QUERY
     }
 };
 

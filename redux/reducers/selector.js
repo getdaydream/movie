@@ -13,8 +13,11 @@ const initialSelectedSuggestQuery = Map({
 
 export const selectedSuggestQuery = (state = initialSelectedSuggestQuery, action) => {
     switch (action.type) {
-        case ActionTypes.SELECT_DEFAULT_QUERY:
+        case ActionTypes.SELECT_SUGGEST_QUERY:
             return state.set(action.key, action.value);
+            break;
+        case ActionTypes.RESET_SUGGEST_QUERY:
+            return initialSelectedSuggestQuery;
             break;
         default:
             return state;
