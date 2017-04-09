@@ -43,7 +43,7 @@ movie是使用React构建的网页，用来记录和发现电影。
 * 增加标记功能  
 * 增加评论功能
 * 完成其他页面的功能
-* 使用css-modules、less(or sass)、redux
+* 使用less(or sass
 
 ### 后端
 * 优化标签搜索功能
