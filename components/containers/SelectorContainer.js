@@ -15,13 +15,14 @@ class SelectorContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         selectedSuggestQuery: state.get('selectedSuggestQuery'),
+        pageIndex: state.get('movieData').get('pageIndex')
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         selectSuggestQuery: (key, value) => dispatch(selectSuggestQuery(key, value)),
-        fetchMovieData: () => dispatch(fetchMovieData())
+        fetchMovieData: (pageIndex) => dispatch(fetchMovieData(pageIndex))
     }
 };
 

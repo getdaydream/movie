@@ -9,15 +9,22 @@
 
 .movieData {
     display: -webkit-flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
 }
 
-.img {
+.leftContent {
     user-select: none;
 }
 
-.buttonGroup {
+.img {
+    width: 265px;
+    object-fit: cover;
+}
 
+.buttonGroup {
+    display: -webkit-flex;
+    flex-flow: row nowrap;
+    justify-content: center;
 }
 
 .information {

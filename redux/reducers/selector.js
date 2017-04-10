@@ -47,17 +47,28 @@ export const selectedSuggestQuery = (state = initialSelectedSuggestQuery, action
 export const movieData = (state = Map({
                               movie: Map(),
                               isFetching: false,
-                              items: List()
+                              items: List(),
+                              count: 0,
+                              pageSize: 12,
+                              pageIndex: 0
                           }), action) => {
     switch (action.type) {
         case ActionTypes.REQUEST_MOVIE_DATA:
-            return state.set('isFetching', true);
+            return state
+                .set('pageIndex', action.pageIndex)
+                .set('isFetching', true);
             break;
         case ActionTypes.RECEIVE_MOVIE_DATA:
-            return state
-                .set('isFetching', false)
-                .set('items', fromJS(action.json));
-
+            if (action.json['count'] === 0) {
+                return state
+                    .set('count', 0)
+                    .set('isFetching', false);
+            } else {
+                return state
+                    .set('count', action.json['count'])
+                    .set('items', fromJS(action.json['items']))
+                    .set('isFetching', false);
+            }
             break;
         case ActionTypes.SELECT_MOVIE:
             return state.set('movie', state.get('items').find((v) => {

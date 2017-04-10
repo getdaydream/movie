@@ -24,9 +24,10 @@ export const selectMovie = (id) => {
     }
 };
 
-export const requestMovieData = () => {
+export const requestMovieData = (pageIndex) => {
     return {
         type: ActionTypes.REQUEST_MOVIE_DATA,
+        pageIndex
     }
 };
 
@@ -38,7 +39,7 @@ export const receiveMovieData = (json) => {
 };
 
 const getRequestUrl = (state) => {
-    let movieQuery = '';
+    let movieQuery = `pageIndex=${state.get('movieData').get('pageIndex')}&pageSize=${state.get('movieData').get('pageSize')}&`;
 
     state.get('selectedSuggestQuery').forEach((value, key) => {
         if (value !== '全部') {
@@ -50,10 +51,10 @@ const getRequestUrl = (state) => {
     return movieQuery;
 };
 
-export const fetchMovieData = () => {
+export const fetchMovieData = (pageIndex) => {
     return (dispatch, getState) => {
 
-        dispatch(requestMovieData());
+        dispatch(requestMovieData(pageIndex));
 
         const movieQuery = getRequestUrl(getState());
         const url = 'http://localhost:3000/douban?' + movieQuery;

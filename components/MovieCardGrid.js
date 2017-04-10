@@ -9,12 +9,12 @@ import style from './MovieCardGrid.css';
 export default class MovieCardGrid extends React.Component {
 
     render() {
-        const {items, selectMovie } = this.props;
+        const {items, selectMovie, count, pageIndex, pageSize } = this.props;
 
         return (
             <div className={style.root}>
                 <div className={style.container}>
-                    {items.size !== 0 && items.map((item, index) => {
+                    { items && items.map((item, index) => {
                         const data = {
                             id: item.get('id'),
                             rating: item.get('rating_data').get('rating'),
@@ -29,7 +29,9 @@ export default class MovieCardGrid extends React.Component {
                         />
                     })}
                     <Pagination
-                        pageCount={3}
+                        count={count}
+                        pageSize={pageSize}
+                        pageIndex={pageIndex}
                     />
                 </div>
             </div>

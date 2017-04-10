@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RadioButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import style from './Movie.css';
 
 const inlineStyle = {
@@ -11,8 +11,14 @@ const inlineStyle = {
         padding: '20px',
         margin: '20px 80px',
         zDepth: 2,
+    },
+    button: {
+        border: '1px solid #DFDFDF'
     }
 };
+
+const buttonData = ['想看', '看过', '在看'];
+
 
 export default class Movie extends React.Component {
 
@@ -23,20 +29,27 @@ export default class Movie extends React.Component {
 
         return (
             <Paper style={inlineStyle.paper}>
-
                 <div className={style.movieData}>
-                    <div className={style.img}>
+                    <div className={style.leftContent}>
                         <img
+                            className={style.img}
                             src={`http://localhost:3000/img/${movie.get('id')}.jpg`}
                             alt={`${movie.get('id')}.jpg`}
                         />
+                        <div className={style.buttonGroup}>
+                            {buttonData.map((data, index) => {
+                                return (
+                                    <RaisedButton
+                                        key={index}
+                                        label={data}
+                                        style={inlineStyle.button}
+                                    />
+                                )
+                            })}
+                        </div>
                     </div>
                     <div className={style.information}>
-                        <div className={style.buttonGroup}>
-                            <RaisedButton
-                                label='想看'
-                            />
-                        </div>
+
                     </div>
                 </div>
 

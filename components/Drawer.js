@@ -27,7 +27,7 @@ export default class Sidebar extends React.Component {
 
     handleClickExplore = () => {
         store.dispatch(resetSuggestQuery());
-        store.dispatch(fetchMovieData())
+        store.dispatch(fetchMovieData(0))
     };
 
     render() {

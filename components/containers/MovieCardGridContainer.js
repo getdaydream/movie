@@ -14,7 +14,10 @@ class MovieCardGridContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.get('movieData').get('items')
+        items: state.get('movieData').get('items'),
+        count: state.get('movieData').get('count'),
+        pageIndex: state.get('movieData').get('pageIndex'),
+        pageSize: state.get('movieData').get('pageSize')
     };
 };
 

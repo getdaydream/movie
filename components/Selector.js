@@ -35,8 +35,8 @@ export default class Selector extends React.Component {
     }
 
     componentDidMount() {
-        const { fetchMovieData } = this.props;
-        fetchMovieData();
+        const { fetchMovieData, pageIndex } = this.props;
+        fetchMovieData(pageIndex);
     }
 
     handleTouchTap = (event, title) => {
@@ -62,7 +62,7 @@ export default class Selector extends React.Component {
 
         const {selectSuggestQuery, fetchMovieData} = this.props;
         selectSuggestQuery(title, menuData[title][index]);
-        fetchMovieData();
+        fetchMovieData(0);
     };
 
     render() {
