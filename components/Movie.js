@@ -4,6 +4,7 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import Rating from './Rating';
 import style from './Movie.css';
 
 const inlineStyle = {
@@ -47,6 +48,8 @@ export default class Movie extends React.Component {
                                 )
                             })}
                         </div>
+
+                        <Rating/>
                     </div>
                     <div className={style.information}>
 
