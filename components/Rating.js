@@ -1,67 +1,89 @@
 /**
  * Created by Maple on 17/4/11.
  */
-import React from 'react';
-import Star from 'material-ui/svg-icons/toggle/star';
-import StarHalf from 'material-ui/svg-icons/toggle/star-half';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import React, { PropTypes } from 'react';
+import { IconButton } from 'material-ui'
+import { colors } from 'material-ui/styles'
+import { ToggleStar, ToggleStarBorder } from 'material-ui/svg-icons'
 import style from './Rating.css';
+
+const styles = {
+    disabled: {
+        pointerEvents: 'none'
+    }
+};
 
 export default class Rating extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            rating: new Array(5).fill('star-border')
+            hoverValue: props.value
         }
     }
 
-    handleMouseOver = (index) => {
+    renderIcon(i) {
+        const filled = i <= this.props.value;
+        const hovered = i <= this.state.hoverValue;
 
-        const newRating = new Array(index + 1).fill('star').concat(new Array(4 - index).fill('star-border'));
-
-        this.setState({
-            rating: newRating
-        });
-    };
-
-    handleMouseOut = () => {
-        const newRating = new Array(5).fill('star-border');
-
-        console.log('haha');
-
-        this.setState({
-            rating: newRating
-        })
-    };
+        if ((hovered && !filled) || (!hovered && filled)) {
+            return this.props.iconHovered
+        } else if (filled) {
+            return this.props.iconFilled
+        } else {
+            return this.props.iconNormal
+        }
+    }
 
     render() {
+        const rating = [];
+        for (let i = 1; i <= this.props.max; i++) {
+            rating.push(
+                <IconButton
+                    key={i}
+                    disabled={this.props.disabled}
+                    iconStyle={this.props.itemIconStyle}
+                    style={this.props.itemStyle}
+                    onMouseEnter={() => this.setState({ hoverValue: i })}
+                    onMouseLeave={() => this.setState({ hoverValue: this.props.value })}
+                    onTouchTap={() => this.props.onChange(i)}
+                >
+                    {this.renderIcon(i)}
+                </IconButton>
+            )
+        }
+
         return (
-            <div className={style.root}>
-                {this.state.rating.map((v, index) => {
-                    switch (v) {
-                        case 'star-border':
-                            return <StarBorder
-                                key={index}
-                                onMouseOver={() => this.handleMouseOver(index)}
-                                onMouseOut={this.handleMouseOut}
-                            />;
-                            break;
-                        case 'star-half':
-                            return <StarHalf
-                                key={index}
-                            />;
-                            break;
-                        case 'star':
-                            return <Star
-                                key={index}
-                            />;
-                            break;
-                        default:
-                    }
-                })}
+            <div
+                style={this.props.disabled || this.props.readOnly ? { ...styles.disabled, ...this.props.style } : this.props.style}
+            >
+                {rating}
             </div>
         )
     }
 }
+
+Rating.defaultProps = {
+    disabled: false,
+    iconFilled: <ToggleStar color={colors.orange500}/>,
+    iconHovered: <ToggleStarBorder color={colors.orange500}/>,
+    iconNormal: <ToggleStarBorder color={colors.grey300}/>,
+    max: 5,
+    readOnly: false,
+    value: 0
+};
+
+Rating.propTypes = {
+    disabled: PropTypes.bool,
+    iconFilled: PropTypes.node,
+    iconHovered: PropTypes.node,
+    iconNormal: PropTypes.node,
+    itemStyle: PropTypes.object,
+    itemIconStyle: PropTypes.object,
+    max: PropTypes.number,
+    onChange: PropTypes.func.isRequired,
+    readOnly: PropTypes.bool,
+    style: PropTypes.object,
+    value: PropTypes.number
+};
 

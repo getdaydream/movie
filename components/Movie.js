@@ -49,7 +49,11 @@ export default class Movie extends React.Component {
                             })}
                         </div>
 
-                        <Rating/>
+                        <Rating
+                            value={3}
+                            max={5}
+                            onChange={(value) => console.log(`Rated with value ${value}`)}
+                        />
                     </div>
                     <div className={style.information}>
 
