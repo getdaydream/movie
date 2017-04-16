@@ -4,7 +4,9 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
 import Rating from './Rating';
+
 import style from './Movie.css';
 
 const inlineStyle = {
@@ -23,9 +25,38 @@ const buttonData = ['想看', '看过', '在看'];
 
 export default class Movie extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            openSnackbar: false
+        }
+    }
+
+    componentDidMount() {
+        const {
+            movie,
+            getMyMovieData
+        } = this.props;
+        getMyMovieData(movie.get('id'));
+    }
+
+    handleOpenSnackbar = () => {
+      this.setState({
+          openSnackbar: true
+      })
+    };
+
+    handleCloseSnackbar = () => {
+      this.setState({
+          openSnackbar: false
+      })
+    };
+
     render() {
         const {
-            movie
+            movie,
+            myMovieData
         } =this.props;
 
         return (
@@ -37,23 +68,32 @@ export default class Movie extends React.Component {
                             src={`http://localhost:3000/img/${movie.get('id')}.jpg`}
                             alt={`${movie.get('id')}.jpg`}
                         />
-                        <div className={style.buttonGroup}>
-                            {buttonData.map((data, index) => {
-                                return (
-                                    <RaisedButton
-                                        key={index}
-                                        label={data}
-                                        style={inlineStyle.button}
-                                    />
-                                )
-                            })}
-                        </div>
-
-                        <Rating
-                            value={3}
-                            max={5}
-                            onChange={(value) => console.log(`Rated with value ${value}`)}
-                        />
+                        {myMovieData.get('items').size === 1 && (
+                            <div>
+                                <div className={style.buttonGroup}>
+                                    {buttonData.map((data, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <RaisedButton
+                                                    label={data}
+                                                    style={inlineStyle.button}
+                                                    onTouchTap={this.handleOpenSnackbar}
+                                                />
+                                                <Snackbar
+                                                    open={this.state.openSnackbar}
+                                                    message="您已经改变了观影状态"
+                                                    autoHideDuration={4000}
+                                                    onRequestClose={this.handleCloseSnackbar}
+                                                />
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                                <Rating
+                                    onChange={(value) => console.log(`Rated with value ${value}`)}
+                                />
+                            </div>
+                        )}
                     </div>
                     <div className={style.information}>
 

@@ -2,9 +2,9 @@
  * Created by Maple on 17/4/11.
  */
 import React, { PropTypes } from 'react';
-import { IconButton } from 'material-ui'
-import { colors } from 'material-ui/styles'
-import { ToggleStar, ToggleStarBorder } from 'material-ui/svg-icons'
+import { IconButton } from 'material-ui';
+import { colors } from 'material-ui/styles';
+import { ToggleStar, ToggleStarBorder } from 'material-ui/svg-icons';
 import style from './Rating.css';
 
 const styles = {

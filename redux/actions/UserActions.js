@@ -4,17 +4,16 @@
 import * as ActionTypes from '../../constants/ActionTypes';
 
 
-export const selectMovie = (id) => {
-    return {
-        type: ActionTypes.SELECT_MOVIE,
-        id
-    }
-};
+// export const selectMovie = (id) => {
+//     return {
+//         type: ActionTypes.SELECT_MOVIE,
+//         id
+//     }
+// };
 
-export const requestMyMovieData = (pageIndex) => {
+export const requestMyMovieData = () => {
     return {
-        type: ActionTypes.REQUEST_MY_MOVIE_DATA,
-        pageIndex
+        type: ActionTypes.REQUEST_MY_MOVIE_DATA
     }
 };
 
@@ -25,33 +24,37 @@ export const receiveMyMovieData = (json) => {
     }
 };
 
-const getRequestUrl = (state) => {
-    let movieQuery = `pageIndex=${state.get('movieData').get('pageIndex')}&pageSize=${state.get('movieData').get('pageSize')}&`;
+export const getMyMovieData = (doubanId) => {
+    return (dispatch) => {
 
-    state.get('selectedSuggestQuery').forEach((value, key) => {
-        if (value !== '全部') {
-            movieQuery += key + '=' + value + '&'
-        }
-    });
+        dispatch(requestMyMovieData());
 
-    console.log(movieQuery);
-    return movieQuery;
+        const url = `http://localhost:3000/user?id=${doubanId}`;
+
+        console.log('haha');
+
+        return fetch(url)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+                dispatch(receiveMyMovieData(json))
+            })
+    }
 };
 
-export const fetchMyMovieData = (pageIndex) => {
-    return (dispatch, getState) => {
+export const updateMyMovieData = (doubanId, updatedData) => {
+    return (dispatch) => {
 
-        dispatch(requestMovieData(pageIndex));
+        dispatch(requestMyMovieData());
 
-        const movieQuery = getRequestUrl(getState());
-        const url = 'http://localhost:3000/douban?' + movieQuery;
+        const url = `http://localhost:3000/user?id=${doubanId}&${updatedData}`;
 
 
         return fetch(url)
             .then(response => response.json())
             .then(json => {
                 console.log(json);
-                dispatch(receiveMovieData(json))
+                dispatch(receiveMyMovieData(json))
             })
     }
 };
